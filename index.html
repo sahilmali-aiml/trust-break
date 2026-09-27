@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TRUST://BREAK</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div id="app">
+
+    <!-- ===== START SCREEN ===== -->
+    <section id="screen-start" class="screen">
+      <h1 class="logo">TRUST<span class="slash">://</span>BREAK</h1>
+      <p class="tagline">Everyone remembers something. Nobody remembers everything.</p>
+
+      <div class="brief">
+        <p>You are the emergency commander of station <strong>ORION</strong>.</p>
+        <p>Five AI crew members are online. One of them caused the sabotage.</p>
+        <p>Interrogate the crew, cross-check evidence, and accuse the culprit before the station fails.</p>
+      </div>
+
+      <button id="btn-start" class="btn-primary">BEGIN INVESTIGATION</button>
+    </section>
+
+    <!-- ===== GAME SCREEN ===== -->
+    <section id="screen-game" class="screen hidden">
+
+      <header class="topbar">
+        <div class="topbar-left">
+          <span class="station-name">STATION ORION</span>
+          <span class="incident-line" id="incident-line">REACTOR FAILURE — 02:43 AM</span>
+        </div>
+        <div class="topbar-right">
+          <div class="meter">
+            <span class="meter-label">STATION INTEGRITY</span>
+            <div class="meter-bar"><div class="meter-fill" id="integrity-fill"></div></div>
+          </div>
+          <div class="timer" id="timer">08:00</div>
+        </div>
+      </header>
+
+      <main class="layout">
+
+        <!-- CREW PANEL -->
+        <aside class="panel crew-panel">
+          <div class="panel-title">CREW</div>
+          <div id="crew-list" class="crew-list"></div>
+          <button id="btn-open-accuse" class="btn-danger">FORMAL ACCUSATION</button>
+        </aside>
+
+        <!-- CONVERSATION PANEL -->
+        <section class="panel convo-panel">
+          <div class="panel-title" id="convo-title">SELECT A CREW MEMBER</div>
+          <div id="convo-feed" class="convo-feed">
+            <p class="convo-hint">Click a crew member on the left to begin questioning.</p>
+          </div>
+          <div id="question-bank" class="question-bank"></div>
+        </section>
+
+        <!-- SIDE STACK: EVIDENCE + REASONING -->
+        <aside class="side-stack">
+          <div class="panel evidence-panel">
+            <div class="panel-title">EVIDENCE</div>
+            <div id="evidence-list" class="evidence-list"></div>
+          </div>
+          <div class="panel reasoning-panel">
+            <div class="panel-title">SYSTEM.LOG</div>
+            <div id="reasoning-feed" class="reasoning-feed"></div>
+          </div>
+        </aside>
+
+      </main>
+    </section>
+
+    <!-- ===== ACCUSATION MODAL ===== -->
+    <div id="modal-accuse" class="modal hidden">
+      <div class="modal-box">
+        <h3>FORMAL ACCUSATION</h3>
+        <p class="modal-sub">This ends the investigation. Choose carefully.</p>
+        <div id="accuse-options" class="accuse-options"></div>
+        <button id="btn-cancel-accuse" class="btn-secondary">CANCEL</button>
+      </div>
+    </div>
+
+    <!-- ===== RESULT SCREENS ===== -->
+    <section id="screen-win" class="screen hidden">
+      <h2 class="result-title win">CULPRIT CONFIRMED</h2>
+      <p class="result-sub" id="win-sub"></p>
+      <div class="result-stats">
+        <p>Integrity remaining: <span id="win-integrity">0%</span></p>
+        <p>Time remaining: <span id="win-time">00:00</span></p>
+      </div>
+      <button class="btn-primary" id="btn-retry-win">NEW SCENARIO</button>
+    </section>
+
+    <section id="screen-lose-wrong" class="screen hidden">
+      <h2 class="result-title lose">WRONGFUL ACCUSATION</h2>
+      <p class="result-sub" id="lose-wrong-sub"></p>
+      <button class="btn-primary" id="btn-retry-lose-wrong">RETRY</button>
+    </section>
+
+    <section id="screen-lose-time" class="screen hidden">
+      <h2 class="result-title lose">STATION FAILURE</h2>
+      <p class="result-sub">Time ran out before a culprit was named.</p>
+      <p class="result-sub" id="lose-time-reveal"></p>
+      <button class="btn-primary" id="btn-retry-lose-time">RETRY</button>
+    </section>
+
+  </div>
+
+<script src="game.js"></script>
+</body>
+</html>
